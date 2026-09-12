@@ -173,16 +173,16 @@
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(11, 11, 12, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(7, 7, 9, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .site-header.is-scrolled {
-  background: rgba(11, 11, 12, 0.96);
-  border-bottom-color: var(--line);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  background: rgba(7, 7, 9, 0.96);
+  border-bottom-color: rgba(201, 161, 90, 0.22);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 .header-row {
   display: flex;
@@ -351,14 +351,18 @@
   justify-content: center;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 12%, rgba(201, 161, 90, 0.16) 0%, transparent 60%),
-    linear-gradient(180deg, #0b0b0c 0%, #111115 60%, #0b0b0c 100%);
+    radial-gradient(ellipse 75% 55% at 50% 5%, rgba(201, 161, 90, 0.22) 0%, transparent 70%),
+    radial-gradient(circle 600px at 85% 25%, rgba(180, 135, 60, 0.12) 0%, transparent 55%),
+    radial-gradient(circle 550px at 15% 75%, rgba(70, 55, 95, 0.15) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(7, 7, 9, 0.5) 0%, rgba(13, 13, 17, 0.7) 60%, var(--ink) 100%);
   padding: clamp(4rem, 8vw, 6rem) var(--gutter) 4rem;
 }
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(201, 161, 90, 0.06) 0%, transparent 40%);
+  background:
+    radial-gradient(circle 450px at 80% 15%, rgba(201, 161, 90, 0.09) 0%, transparent 50%),
+    radial-gradient(circle 500px at 20% 85%, rgba(80, 65, 110, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
 .hero-grid {
@@ -434,9 +438,11 @@
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
-  border: 1px solid var(--line-light);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.65), 0 0 32px rgba(201, 161, 90, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background: var(--panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 .hero-visual-card img {
   width: 100%;
@@ -479,9 +485,13 @@
    6. Lookbook Showcase Section (Featured Drop 01)
    -------------------------------------------------------------------------- */
 .lookbook-showcase {
-  background: #0d0d10;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 20%, rgba(201, 161, 90, 0.08) 0%, transparent 70%),
+    radial-gradient(circle 500px at 90% 80%, rgba(70, 55, 90, 0.07) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ink) 0%, #0e0e13 40%, #0e0e13 70%, var(--ink) 100%);
+  border-top: 1px solid rgba(201, 161, 90, 0.16);
+  border-bottom: 1px solid rgba(201, 161, 90, 0.16);
+  position: relative;
 }
 .lookbook-grid {
   display: grid;
@@ -490,18 +500,21 @@
 }
 .lookbook-card {
   position: relative;
-  background: var(--panel);
+  background: rgba(18, 18, 23, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
   display: flex;
   flex-direction: column;
 }
 .lookbook-card:hover {
   transform: translateY(-5px);
+  background: rgba(22, 22, 28, 0.88);
   border-color: rgba(201, 161, 90, 0.55);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(201, 161, 90, 0.08);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 24px rgba(201, 161, 90, 0.14);
 }
 .lookbook-media {
   position: relative;
@@ -831,19 +844,22 @@
   gap: 1.8rem;
 }
 .product-card {
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: rgba(18, 18, 23, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: transform 0.32s var(--ease), border-color 0.32s var(--ease), box-shadow 0.32s var(--ease);
+  transition: transform 0.32s var(--ease), border-color 0.32s var(--ease), box-shadow 0.32s var(--ease), background 0.32s var(--ease);
   display: flex;
   flex-direction: column;
   position: relative;
 }
 .product-card:hover {
   transform: translateY(-5px);
-  border-color: var(--line-light);
-  box-shadow: var(--shadow-card);
+  background: rgba(22, 22, 28, 0.88);
+  border-color: rgba(201, 161, 90, 0.45);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.6), 0 0 22px rgba(201, 161, 90, 0.1);
 }
 
 .product-media {
@@ -1599,9 +1615,11 @@
    12. Craft / Philosophy Section
    -------------------------------------------------------------------------- */
 .craft-section {
-  background: #0d0d11;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 65% 45% at 50% 50%, rgba(201, 161, 90, 0.07) 0%, transparent 65%),
+    linear-gradient(180deg, var(--ink) 0%, #0d0d12 40%, var(--ink) 100%);
+  border-top: 1px solid rgba(201, 161, 90, 0.16);
+  border-bottom: 1px solid rgba(201, 161, 90, 0.16);
 }
 .craft-grid {
   display: grid;
@@ -1610,14 +1628,18 @@
 }
 .craft-card {
   padding: 2.2rem;
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: rgba(18, 18, 23, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-md);
-  transition: border-color 0.28s var(--ease), transform 0.28s var(--ease);
+  transition: border-color 0.28s var(--ease), transform 0.28s var(--ease), box-shadow 0.28s var(--ease), background 0.28s var(--ease);
 }
 .craft-card:hover {
   border-color: var(--gold);
+  background: rgba(22, 22, 28, 0.88);
   transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(201, 161, 90, 0.1);
 }
 .craft-card-icon {
   width: 44px;
@@ -1672,8 +1694,10 @@
    14. Footer & Newsletter
    -------------------------------------------------------------------------- */
 .site-footer {
-  background: #070708;
-  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 161, 90, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg, var(--ink) 0%, #040405 100%);
+  border-top: 1px solid rgba(201, 161, 90, 0.16);
   padding: clamp(3.5rem, 6vw, 5rem) 0 2.5rem;
 }
 .footer-top {

@@ -1,17 +1,20 @@
 :root {
-  --ink: #0b0b0c;
-  --ink-elevated: #131316;
-  --panel: #18181d;
-  --panel-hover: #222228;
-  --line: #27272e;
-  --line-light: #383842;
-  --ivory: #f5f0e6;
+  --ink: #070709;
+  --ink-elevated: #111115;
+  --panel: rgba(18, 18, 23, 0.75);
+  --panel-hover: rgba(26, 26, 33, 0.9);
+  --panel-solid: #131318;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-light: rgba(255, 255, 255, 0.15);
+  --ivory: #f7f3eb;
   --ivory-dim: #b8b1a2;
   --muted: #797467;
   --gold: #c9a15a;
   --gold-bright: #ebd08d;
   --gold-deep: #8c6a2d;
-  --gold-glow: rgba(201, 161, 90, 0.22);
+  --gold-glow: rgba(201, 161, 90, 0.28);
+  --ambient-gold: rgba(201, 161, 90, 0.14);
+  --ambient-twilight: rgba(65, 52, 80, 0.16);
   --success: #52b788;
   --danger: #e63946;
 
@@ -25,8 +28,8 @@
   --radius-md: 6px;
   --radius-lg: 12px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-card: 0 12px 36px rgba(0, 0, 0, 0.45);
-  --shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.75);
+  --shadow-card: 0 16px 42px rgba(0, 0, 0, 0.55);
+  --shadow-modal: 0 28px 72px rgba(0, 0, 0, 0.85);
 
   /* Safe Area Insets for iOS Notch & Android Bezel */
   --safe-top: env(safe-area-inset-top, 0px);
@@ -51,6 +54,14 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--ink);
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(201, 161, 90, 0.18) 0%, transparent 65%),
+    radial-gradient(circle 700px at 0% 30%, rgba(65, 52, 80, 0.16) 0%, transparent 70%),
+    radial-gradient(circle 600px at 100% 60%, rgba(201, 161, 90, 0.09) 0%, transparent 60%),
+    radial-gradient(circle 800px at 20% 90%, rgba(45, 50, 70, 0.12) 0%, transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 36px 36px;
+  background-attachment: fixed;
   color: var(--ivory);
   font-family: var(--sans);
   font-size: 15px;
