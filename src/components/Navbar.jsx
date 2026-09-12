@@ -4,8 +4,11 @@ import { ShoppingBag, Heart, Search, Menu, X } from 'lucide-react';
 export default function Navbar({
   cartCount,
   wishlistCount,
+  user,
   onOpenCart,
   onOpenWishlist,
+  onOpenAuth,
+  onOpenDashboard,
   onSearchFocus,
   onSelectCategory
 }) {
@@ -70,6 +73,21 @@ export default function Navbar({
             <Search size={18} strokeWidth={1.75} />
           </button>
 
+          {/* User Account Button (Auth / VIP Dashboard) */}
+          <button
+            className={`action-btn user-account-btn ${user ? 'is-logged-in' : ''}`}
+            onClick={user ? onOpenDashboard : onOpenAuth}
+            aria-label={user ? `Open account for ${user.name}` : "Sign In or Register"}
+            title={user ? `VIP Account: ${user.name} (${user.tier})` : "Sign In to Atelier"}
+          >
+            {user ? (
+              <span className="user-avatar-text">{user.name.charAt(0)}</span>
+            ) : (
+              <User size={18} strokeWidth={1.75} />
+            )}
+            {user && <span className="user-vip-dot" title="VIP Member" />}
+          </button>
+
           <button
             className="action-btn"
             onClick={onOpenWishlist}
@@ -105,6 +123,19 @@ export default function Navbar({
       {mobileMenuOpen && (
         <div className="mobile-nav-drawer" role="dialog" aria-label="Mobile navigation menu">
           <div className="mobile-nav-list">
+            <button
+              type="button"
+              className="mobile-nav-link"
+              style={{ color: 'var(--gold-bright)', fontWeight: 600 }}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (user) onOpenDashboard();
+                else onOpenAuth();
+              }}
+            >
+              <span>{user ? `VIP Account (${user.name})` : 'Atelier Access / Sign In'}</span>
+              <span className="mobile-nav-arrow">→</span>
+            </button>
             <button type="button" className="mobile-nav-link" onClick={() => handleNavClick('#shop', 'all')}>
               <span>Shop All Pieces</span>
               <span className="mobile-nav-arrow">→</span>

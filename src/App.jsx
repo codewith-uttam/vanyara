@@ -13,8 +13,53 @@ import CheckoutModal from './components/CheckoutModal';
 import CraftSection from './components/CraftSection';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
+import AuthModal from './components/AuthModal';
+import UserDashboard from './components/UserDashboard';
 
 export default function App() {
+  // User Authentication State (Persisted)
+  const [user, setUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('vanyara_user_v1');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  // Customer Orders State (Persisted)
+  const [orders, setOrders] = useState(() => {
+    try {
+      const saved = localStorage.getItem('vanyara_orders_v1');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    // Initial sample VIP order for immediate rich showcase
+    return [
+      {
+        id: 'VY-749201',
+        date: 'Sep 10, 2026',
+        status: 'In Transit',
+        total: 4490,
+        items: [
+          {
+            id: 'vy-001',
+            name: 'Everyday Strength Hoodie',
+            price: 4490,
+            image: '/images/hoodie-strength-women.jpg',
+            selectedSize: 'L (Oversize)',
+            selectedColor: 'Black Onyx',
+            qty: 1
+          }
+        ],
+        shippingAddress: 'Skyline Penthouse 14B, Altamount Road, Mumbai 400026'
+      }
+    ];
+  });
+
+  // Modals & Drawers Visibility
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+
   // Cart State (Persisted)
   const [cart, setCart] = useState(() => {
     try {
@@ -54,7 +99,33 @@ export default function App() {
     setToasts((prev) => [...prev, { id, message }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 3000);
+    }, 3200);
+  };
+
+  // Sync User to LocalStorage
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('vanyara_user_v1', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('vanyara_user_v1');
+    }
+  }, [user]);
+
+  // Sync Orders to LocalStorage
+  useEffect(() => {
+    localStorage.setItem('vanyara_orders_v1', JSON.stringify(orders));
+  }, [orders]);
+
+  // Auth operations
+  const handleLogin = (userData) => {
+    setUser(userData);
+    showToast(`Welcome to House of Vanyara, ${userData.name}`);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setIsDashboardOpen(false);
+    showToast('Signed out of Atelier');
   };
 
   // Sync Cart to LocalStorage
@@ -190,8 +261,11 @@ export default function App() {
       <Navbar
         cartCount={totalCartCount}
         wishlistCount={wishlist.length}
+        user={user}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenWishlist={() => setIsWishlistOpen(true)}
+        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenDashboard={() => setIsDashboardOpen(true)}
         onSearchFocus={handleFocusSearch}
         onSelectCategory={handleCategorySelect}
       />
@@ -269,10 +343,31 @@ export default function App() {
         isOpen={Boolean(checkoutData)}
         onClose={() => setCheckoutData(null)}
         checkoutData={checkoutData}
-        onOrderComplete={() => {
+        user={user}
+        onOrderComplete={(newOrder) => {
           setCart([]);
+          if (newOrder) {
+            setOrders((prev) => [newOrder, ...prev]);
+          }
           showToast('Order confirmed! Check your email for tracking.');
         }}
+      />
+
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        onLogin={handleLogin}
+      />
+
+      {/* Customer VIP Dashboard */}
+      <UserDashboard
+        isOpen={isDashboardOpen}
+        onClose={() => setIsDashboardOpen(false)}
+        user={user}
+        orders={orders}
+        onLogout={handleLogout}
+        onOpenShop={handleShopScroll}
       />
 
       {/* Feedback Toasts */}

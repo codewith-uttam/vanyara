@@ -6,6 +6,7 @@ export default function CheckoutModal({
   isOpen,
   onClose,
   checkoutData,
+  user,
   onOrderComplete
 }) {
   if (!isOpen || !checkoutData) return null;
@@ -13,12 +14,12 @@ export default function CheckoutModal({
   const [step, setStep] = useState('form'); // 'form' | 'success'
   const [paymentMethod, setPaymentMethod] = useState('upi');
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
+    name: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    address: user?.address || '',
     city: 'Mumbai',
-    pincode: ''
+    pincode: '400026'
   });
   const [orderId, setOrderId] = useState('');
 
@@ -31,7 +32,19 @@ export default function CheckoutModal({
     const generatedId = `VY-${Math.floor(100000 + Math.random() * 900000)}`;
     setOrderId(generatedId);
     setStep('success');
-    onOrderComplete();
+    
+    const newOrder = {
+      id: generatedId,
+      date: new Date().toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }),
+      status: 'Atelier Inspection',
+      total: checkoutData.finalTotal,
+      items: checkoutData.cartItems,
+      shippingAddress: `${formData.address}, ${formData.city} - ${formData.pincode}`,
+      paymentMethod,
+      customerName: formData.name,
+      customerEmail: formData.email
+    };
+    onOrderComplete(newOrder);
   };
 
   return (
