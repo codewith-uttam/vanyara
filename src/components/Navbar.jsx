@@ -20,6 +20,16 @@ export default function Navbar({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    if (mobileMenuOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const handleNavClick = (anchor, category = null) => {
     setMobileMenuOpen(false);
     if (category && onSelectCategory) {
@@ -36,7 +46,7 @@ export default function Navbar({
       <div className="header-row">
         {/* Brand */}
         <a href="#top" className="brand" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-          <img src="/images/logo.jpg" alt="Vanyara Atelier" className="brand-img" />
+          <img src="/images/logo.jpg" alt="Vanyara" className="brand-img" />
           <span className="brand-text">VANYARA</span>
         </a>
 
@@ -84,28 +94,42 @@ export default function Navbar({
             className="action-btn mobile-menu-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div style={{
-          background: 'var(--ink-elevated)',
-          borderBottom: '1px solid var(--line)',
-          padding: '1.5rem var(--gutter)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.2rem'
-        }}>
-          <button style={{ textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ivory)' }} onClick={() => handleNavClick('#shop', 'all')}>All Pieces</button>
-          <button style={{ textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ivory)' }} onClick={() => handleNavClick('#shop', 'hoodies')}>Heavyweight Hoodies</button>
-          <button style={{ textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ivory)' }} onClick={() => handleNavClick('#shop', 'oversized-tees')}>Oversized Tees</button>
-          <button style={{ textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ivory)' }} onClick={() => handleNavClick('#shop', 'bottoms')}>Pants & Cargos</button>
-          <button style={{ textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ivory)' }} onClick={() => handleNavClick('#lookbook')}>Lookbook Drop</button>
-          <button style={{ textAlign: 'left', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ivory)' }} onClick={() => handleNavClick('#craft')}>Atelier Craft</button>
+        <div className="mobile-nav-drawer" role="dialog" aria-label="Mobile navigation menu">
+          <div className="mobile-nav-list">
+            <button type="button" className="mobile-nav-link" onClick={() => handleNavClick('#shop', 'all')}>
+              <span>Shop All Pieces</span>
+              <span className="mobile-nav-arrow">→</span>
+            </button>
+            <button type="button" className="mobile-nav-link" onClick={() => handleNavClick('#shop', 'hoodies')}>
+              <span>Heavyweight Hoodies (480 GSM)</span>
+              <span className="mobile-nav-arrow">→</span>
+            </button>
+            <button type="button" className="mobile-nav-link" onClick={() => handleNavClick('#shop', 'oversized-tees')}>
+              <span>Oversized Street Tees</span>
+              <span className="mobile-nav-arrow">→</span>
+            </button>
+            <button type="button" className="mobile-nav-link" onClick={() => handleNavClick('#shop', 'bottoms')}>
+              <span>Pants & Cargos</span>
+              <span className="mobile-nav-arrow">→</span>
+            </button>
+            <button type="button" className="mobile-nav-link" onClick={() => handleNavClick('#lookbook')}>
+              <span>Drop 01 Editorial Lookbook</span>
+              <span className="mobile-nav-arrow">→</span>
+            </button>
+            <button type="button" className="mobile-nav-link" onClick={() => handleNavClick('#craft')}>
+              <span>Atelier Craft Standards</span>
+              <span className="mobile-nav-arrow">→</span>
+            </button>
+          </div>
         </div>
       )}
     </header>

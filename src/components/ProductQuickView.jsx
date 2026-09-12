@@ -135,7 +135,7 @@ export default function ProductQuickView({
             )}
 
             {/* Quantity & Actions */}
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', alignItems: 'center' }}>
+            <div className="quickview-actions-wrap">
               <div className="qty-control">
                 <button
                   className="qty-btn"
@@ -155,8 +155,7 @@ export default function ProductQuickView({
               </div>
 
               <button
-                className="btn btn-solid"
-                style={{ flexGrow: 1 }}
+                className="btn btn-solid quickview-add-btn"
                 onClick={handleAdd}
               >
                 <ShoppingBag size={17} />
@@ -164,8 +163,7 @@ export default function ProductQuickView({
               </button>
 
               <button
-                className={`action-btn ${isWishlisted ? 'is-active' : ''}`}
-                style={{ width: 44, height: 44 }}
+                className={`action-btn quickview-wish-btn ${isWishlisted ? 'is-active' : ''}`}
                 onClick={() => onToggleWishlist(product)}
                 aria-label="Save to Wishlist"
               >
@@ -174,19 +172,11 @@ export default function ProductQuickView({
             </div>
 
             {/* Guarantee Pills */}
-            <div style={{
-              display: 'flex',
-              gap: '1.5rem',
-              marginTop: '1.5rem',
-              paddingTop: '1.2rem',
-              borderTop: '1px solid var(--line)',
-              fontSize: '0.75rem',
-              color: 'var(--ivory-dim)'
-            }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <div className="quickview-guarantees">
+              <span className="guarantee-item">
                 <Truck size={14} color="var(--gold)" /> Free Express Delivery
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <span className="guarantee-item">
                 <RotateCcw size={14} color="var(--gold)" /> 7-Day Doorstep Returns
               </span>
             </div>

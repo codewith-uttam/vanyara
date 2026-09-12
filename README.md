@@ -94,4 +94,4 @@ Creates an optimized production bundle in `dist/` (build time <1 second, ~60 kB 
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
-Copyright (c) 2026 Uttam Sharma (Vanyara Atelier).
+Copyright (c) 2026 Uttam Sharma (Vanyara).

@@ -291,6 +291,55 @@
   display: none;
 }
 
+/* Mobile Nav Drawer Container */
+.mobile-nav-drawer {
+  background: rgba(19, 19, 22, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.65);
+  animation: slideDownNav 0.24s var(--ease);
+  overflow: hidden;
+}
+@keyframes slideDownNav {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem var(--gutter) calc(1.2rem + var(--safe-bottom));
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+  font-size: 0.86rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  min-height: 44px;
+  transition: color 0.2s var(--ease), padding-left 0.2s var(--ease);
+  text-align: left;
+}
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+.mobile-nav-link:active,
+.mobile-nav-link:hover {
+  color: var(--gold-bright);
+  padding-left: 6px;
+}
+.mobile-nav-arrow {
+  color: var(--gold);
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
 /* --------------------------------------------------------------------------
    5. Hero Section
    -------------------------------------------------------------------------- */
@@ -1251,6 +1300,37 @@
   font-weight: 600;
 }
 
+.quickview-actions-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+.quickview-add-btn {
+  flex-grow: 1;
+  min-height: 46px;
+}
+.quickview-wish-btn {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+.quickview-guarantees {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.75rem;
+  color: var(--ivory-dim);
+  flex-wrap: wrap;
+}
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 /* --------------------------------------------------------------------------
    10. Slide-over Drawers (Cart & Wishlist)
    -------------------------------------------------------------------------- */
@@ -1663,74 +1743,429 @@
 }
 
 /* --------------------------------------------------------------------------
-   15. Responsive Media Queries
+   15. Comprehensive Multi-Device Breakpoints
+   - Ultra-Wide & Desktop (>= 1025px)
+   - Tablets & Small Laptops (641px - 1024px)
+   - Mobile Phones (<= 640px)
+   - Compact Phones (<= 400px)
    -------------------------------------------------------------------------- */
-@media (max-width: 1080px) {
-  .lookbook-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
+/* --------------------------------------------------------------------------
+   A. Tablet & Mid-Width Viewports (641px - 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+    text-align: center;
+  }
+  .hero-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-ctas {
+    justify-content: center;
+  }
+  .hero-stats {
+    justify-content: center;
+    width: 100%;
+    max-width: 520px;
+    margin: 2.2rem auto 0;
   }
   .hero-visual-card {
-    max-width: 480px;
+    max-width: 500px;
+    width: 100%;
     margin: 0 auto;
+  }
+  .lookbook-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+  }
+  .craft-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .craft-card:last-child {
+    grid-column: 1 / -1;
   }
   .footer-top {
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
+  .drawer-panel {
+    max-width: 420px;
+  }
 }
 
-@media (max-width: 768px) {
-  .craft-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .quickview-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
+/* --------------------------------------------------------------------------
+   B. Navigation Breakpoint: Collapse Desktop Nav to Mobile Menu (<= 860px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
   .nav-links {
     display: none;
   }
   .mobile-menu-btn {
     display: grid;
   }
-  .hero-stats {
-    gap: 1.5rem;
-    margin-top: 2rem;
+  .quickview-dialog {
+    max-width: 680px;
   }
-  .footer-top {
+  .quickview-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem;
   }
-  .footer-bottom {
+  .gallery-main {
+    max-height: 420px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   C. Mobile Phones (<= 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* Layout & Global Container */
+  .section {
+    padding: 3rem 0;
+  }
+  .section-head {
+    margin-bottom: 2rem;
+  }
+  .section-title {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+  .section-subtitle {
+    font-size: 0.88rem;
+  }
+
+  /* Header & Brand */
+  .header-row {
+    padding: 0.75rem var(--gutter);
+  }
+  .brand-text {
+    font-size: 1.35rem;
+    letter-spacing: 0.14em;
+  }
+  .brand-img {
+    height: 32px;
+    width: 32px;
+  }
+  .action-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Hero Mobile */
+  .hero {
+    min-height: auto;
+    padding: 2.8rem var(--gutter) 3rem;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.1;
+  }
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1.6rem;
+  }
+  .hero-ctas {
     flex-direction: column;
-    gap: 0.8rem;
-    text-align: center;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    padding: 0.95rem 1.4rem;
+    min-height: 46px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    padding-top: 1.4rem;
+    margin-top: 1.8rem;
+  }
+  .hero-stat b {
+    font-size: 1.45rem;
+  }
+  .hero-stat span {
+    font-size: 0.68rem;
+  }
+  .hero-visual-card {
+    max-width: 100%;
+  }
+
+  /* Lookbook Mobile: 1-Column, perfectly centered, fluid height */
+  .lookbook-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .lookbook-info {
+    padding: 1.1rem;
+  }
+  .lookbook-title {
+    min-height: auto;
+    font-size: 1.25rem;
+  }
+  .lookbook-subtitle {
+    min-height: auto;
+    margin-bottom: 0.85rem;
+  }
+  .lookbook-specs {
+    min-height: auto;
+    margin-bottom: 1rem;
+  }
+  .lookbook-btn-details,
+  .lookbook-btn-bag {
+    min-height: 44px;
+    font-size: 0.78rem;
+  }
+
+  /* Catalog Controls */
+  .catalog-controls {
+    margin-bottom: 2rem;
+    gap: 1rem;
   }
   .search-sort-bar {
     flex-direction: column;
     align-items: stretch;
+    gap: 0.85rem;
   }
   .search-input-wrap {
     max-width: 100%;
+    min-width: 0;
+    width: 100%;
   }
-}
+  .search-input {
+    font-size: 16px; /* Prevents iOS Safari auto-zoom on focus */
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+  }
+  .sort-select-wrap {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .sort-select {
+    flex: 1;
+    font-size: 16px; /* Prevents iOS Safari auto-zoom on focus */
+    padding: 0.75rem 1rem;
+  }
+  .category-chips {
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.6rem;
+  }
+  .chip {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
 
-@media (max-width: 520px) {
+  /* Product Grid Mobile */
   .product-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
-  .lookbook-grid {
+  .product-body {
+    padding: 1.1rem;
+  }
+  .product-name {
+    font-size: 1.15rem;
+  }
+  .card-wishlist-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .quick-add-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Slide-over Drawers on Mobile: Full Screen Sheet */
+  .drawer-panel {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    border-left: none;
+  }
+  .drawer-head {
+    padding: 1.15rem 1rem;
+  }
+  .drawer-lines {
+    padding: 1rem;
+  }
+  .drawer-foot {
+    padding: 1.2rem 1rem calc(1.2rem + var(--safe-bottom));
+  }
+  .cart-item {
+    grid-template-columns: 72px 1fr auto;
+    gap: 0.85rem;
+  }
+  .cart-item-img {
+    width: 72px;
+    height: 82px;
+  }
+
+  /* Modals on Mobile: Full-width responsive sheet */
+  .modal-overlay {
+    padding: 0.6rem;
+    align-items: flex-end;
+  }
+  .quickview-dialog,
+  .checkout-dialog {
+    max-height: 94vh;
+    border-radius: var(--radius-lg) var(--radius-lg) var(--radius-md) var(--radius-md);
+    margin: 0;
+    width: 100%;
+  }
+  .quickview-grid {
+    padding: 1.25rem 1rem calc(1.25rem + var(--safe-bottom));
+    gap: 1.2rem;
+  }
+  .quickview-title {
+    font-size: 1.65rem;
+  }
+  .quickview-highlights {
     grid-template-columns: 1fr;
+  }
+  .quickview-actions-wrap {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .quickview-actions-wrap .qty-control {
+    order: 1;
+  }
+  .quickview-wish-btn {
+    order: 2;
+  }
+  .quickview-add-btn {
+    order: 3;
+    width: 100%;
+    flex-grow: unset;
+  }
+
+  /* Checkout Form on Mobile */
+  .checkout-dialog {
+    padding: 1.4rem 1rem calc(1.4rem + var(--safe-bottom));
   }
   .form-grid {
     grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+  .form-field input,
+  .form-field select {
+    font-size: 16px; /* Prevents iOS auto-zoom */
+    padding: 0.8rem 1rem;
   }
   .payment-options {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+  .payment-option-card {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 0.85rem;
+    padding: 0.9rem 1rem;
+  }
+  .payment-option-card small {
+    display: block;
+  }
+
+  /* Craft Cards Mobile */
+  .craft-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .craft-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* Footer Mobile */
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+  .newsletter-form {
+    flex-direction: column;
+  }
+  .newsletter-form .btn {
+    width: 100%;
+  }
+
+  /* Toast Notifications: Bottom-centered with safe-area spacing */
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: calc(1rem + var(--safe-bottom));
+    width: auto;
+  }
+  .toast-item {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   D. Phablets & Mid Mobile (441px to 640px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 441px) and (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .product-body {
+    padding: 0.85rem;
+  }
+  .product-name {
+    font-size: 1rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   E. Compact Screens (<= 400px: iPhone SE, Galaxy Z Flip, etc.)
+   -------------------------------------------------------------------------- */
+@media (max-width: 400px) {
+  :root {
+    --gutter: 0.85rem;
+  }
+  .hero-title {
+    font-size: 1.95rem;
+  }
+  .brand-text {
+    font-size: 1.2rem;
+  }
+  .header-actions {
+    gap: 0.5rem;
+  }
+  .action-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .hero-stat b {
+    font-size: 1.3rem;
+  }
+  .lookbook-buttons {
     grid-template-columns: 1fr;
   }
 }

@@ -74,7 +74,7 @@ export default function Footer({ onCategorySelect, onNotify }) {
         </div>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} VANYARA Atelier. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} VANYARA. All rights reserved.</span>
           <span>Timeless Style. Modern You. Built for Bolder Days.</span>
         </div>
       </div>

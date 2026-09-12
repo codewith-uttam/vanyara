@@ -180,7 +180,7 @@ export default function CheckoutModal({
                 color: 'var(--ivory-dim)'
               }}>
                 <ShieldCheck size={20} color="var(--gold)" />
-                <span>256-Bit SSL Encrypted. Certified authentic Vanyara Atelier order.</span>
+                <span>256-Bit SSL Encrypted. Certified authentic Vanyara order.</span>
               </div>
 
               <button

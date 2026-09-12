@@ -201,7 +201,7 @@ export const PRODUCTS = [
     highlights: [
       "Individual Mineral Wash Process",
       "Micro-Distressed Collar Edge",
-      "Tonal Vanyara Atelier Chest Emblem",
+      "Tonal Vanyara Chest Emblem",
       "Heavy 450 GSM Loopback Terry"
     ],
     colors: [
