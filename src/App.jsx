@@ -116,6 +116,16 @@ export default function App() {
     localStorage.setItem('vanyara_orders_v1', JSON.stringify(orders));
   }, [orders]);
 
+  // Show login popup when visiting this page for non-logged in visitors
+  useEffect(() => {
+    if (!user) {
+      const timer = setTimeout(() => {
+        setIsAuthOpen(true);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   // Auth operations
   const handleLogin = (userData) => {
     setUser(userData);

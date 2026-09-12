@@ -215,6 +215,15 @@ export default function AuthModal({ isOpen, onClose, onLogin }) {
             <span>{tab === 'signin' ? 'Sign In to Atelier' : 'Create VIP Account'}</span>
             <ArrowRight size={16} />
           </button>
+
+          <button
+            type="button"
+            className="btn btn-ghost"
+            style={{ width: '100%', marginTop: '0.6rem', fontSize: '0.78rem' }}
+            onClick={onClose}
+          >
+            Continue as Guest & Browse Drop 01
+          </button>
         </form>
       </div>
     </div>
