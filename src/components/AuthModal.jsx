@@ -18,21 +18,6 @@ export default function AuthModal({ isOpen, onClose, onLogin }) {
     setError('');
   };
 
-  const handleDemoLogin = () => {
-    const demoUser = {
-      name: 'Uttam Sharma',
-      email: 'uttam@vanyara.atelier',
-      phone: '+91 98765 43210',
-      tier: 'Black Label VIP',
-      memberSince: '2026',
-      memberId: 'VY-VIP-0091',
-      credits: 2450,
-      address: 'Skyline Penthouse 14B, Altamount Road, Mumbai 400026'
-    };
-    onLogin(demoUser);
-    onClose();
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (tab === 'signin') {
@@ -89,27 +74,6 @@ export default function AuthModal({ isOpen, onClose, onLogin }) {
               ? 'Sign in to access your orders, saved pieces, and VIP privileges.'
               : 'Join the private circle for early drop access and tailored benefits.'}
           </p>
-        </div>
-
-        {/* 1-Click Quick VIP Demo Login */}
-        <button
-          type="button"
-          className="demo-login-banner"
-          onClick={handleDemoLogin}
-          title="Instant 1-Click Test Access"
-        >
-          <div className="demo-banner-left">
-            <Sparkles size={18} color="var(--gold-bright)" />
-            <div>
-              <b>1-Click VIP Demo Login</b>
-              <small>Continue as Uttam Sharma (VIP Black Label)</small>
-            </div>
-          </div>
-          <ArrowRight size={16} color="var(--gold-bright)" />
-        </button>
-
-        <div className="auth-divider">
-          <span>or continue with credentials</span>
         </div>
 
         {/* Tabs */}
