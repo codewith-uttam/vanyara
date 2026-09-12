@@ -188,6 +188,19 @@ export default function AuthModal({ isOpen, onClose, onLogin }) {
           >
             Continue as Guest & Browse Drop 01
           </button>
+
+          <div style={{
+            textAlign: 'center',
+            marginTop: '1.4rem',
+            paddingTop: '1rem',
+            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+            fontSize: '0.72rem',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'var(--muted)'
+          }}>
+            Created by <span style={{ color: 'var(--gold-bright)', fontWeight: 600 }}>Swastik Infotech</span>
+          </div>
         </form>
       </div>
     </div>
